@@ -1,0 +1,33 @@
+kafka server (store the data from producer and later used by consumer) ->messaging system -> producer & consumer concept
+
+Manual executio of producer and consumer:
+
+Apache kafka installation command:
+------------------------------------
+Step 1: parallely start zookeeper-server-start.bat
+C:\Softwares\kafka_2.13-2.6.0>bin\windows\zookeeper-server-start.bat config\zookeeper.properties
+
+Step 2: start kafka-server-start.bat
+C:\Softwares\kafka_2.13-2.6.0>bin\windows\kafka-server-start.bat config\server.properties
+
+Step 3: parallely start kafka-topics.bat
+C:\Softwares\kafka_2.13-2.6.0>bin\windows\kafka-topics.bat --create --zookeeper localhost:2181 --partitions 1 --replication-factor 1 --topic youtube
+Created topic youtube.
+
+Step 4: to list the kafka-topics.bat topics
+C:\Softwares\kafka_2.13-2.6.0>bin\windows\kafka-topics.bat --list --zookeeper localhost:2181
+youtube
+
+step 5: producer window 
+C:\Softwares\kafka_2.13-2.6.0>bin\windows\kafka-console-producer.bat --broker-list localhost:9092 --topic youtube
+>[2020-09-10 19:22:57,778] WARN [Producer clientId=console-producer] Bootstrap broker localhost:9092 (id: -1 rack: null) disconnected (org.apache.kafka.clients.NetworkClient)
+hello kafka
+>hello kafka
+>how are u
+>
+
+step 6: consumer window
+C:\Softwares\kafka_2.13-2.6.0>bin\windows\kafka-console-consumer.bat --bootstrap-server localhost:9092 --topic  youtube --from-beginning
+hello kafka
+hello kafka
+how are u
